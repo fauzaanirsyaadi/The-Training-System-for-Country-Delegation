@@ -1,0 +1,32 @@
+{
+  "name": "the-training-system-for-country-delegation",
+  "version": "1.0.0",
+  "description": "The Training System for Country Delegation will control the training activities for each skill where this country will participate in a competition. For this system the access will be restricted, and all information can be registered in a database.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fauzaanirsyaadi/The-Training-System-for-Country-Delegation.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fauzaanirsyaadi/The-Training-System-for-Country-Delegation/issues"
+  },
+  "homepage": "https://github.com/fauzaanirsyaadi/The-Training-System-for-Country-Delegation#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongodb": "^5.1.0",
+    "mongoose": "^7.0.2"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.3",
+    "nodemon": "^2.0.21"
+  }
+}

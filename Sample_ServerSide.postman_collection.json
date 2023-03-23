@@ -1,0 +1,137 @@
+{
+	"info": {
+		"_postman_id": "e7166c62-0280-4c9f-8793-ab45f61aa7eb",
+		"name": "Sample_ServerSide",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9572697"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MWJmZDgxM2U4ZGUwMWEwYjc2NjQ3NSIsInByb2ZpbGUiOiJib2FyZCIsImlhdCI6MTY3OTU3NTcyNywiZXhwIjoxNjc5NTc5MzI3fQ.wZzhww5XSMgdnWTjWu81BcVxzg0vy3mQlXACDAErxrM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\": \"fauzaan\",\r\n\"email\": \"fauzaan@email.com\",\r\n\"username\": \"fauzaan2\",\r\n\"password\": \"fauzaan\",\r\n\"profile\": \"board\",\r\n\"skill\": \"admin1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/v1/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\": \"John Doe 2\",\r\n\"email\": \"johndoe2@example.com\",\r\n\"username\": \"johndoe2\",\r\n\"password\": \"password123\",\r\n\"profile\": \"board\",\r\n\"skill\": \"programming\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/v1/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MWJmZDgxM2U4ZGUwMWEwYjc2NjQ3NSIsInByb2ZpbGUiOiJib2FyZCIsImlhdCI6MTY3OTU3NTUxNSwiZXhwIjoxNjc5NTc5MTE1fQ.xHL520Z8SySq17lh6KyHkO5cGRT4Wo0LYsWNkMnsSIc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\": \"John Doe 2\",\r\n\"email\": \"johndoe2@example.com\",\r\n\"username\": \"johndoe2\",\r\n\"password\": \"password123\",\r\n\"profile\": \"board\",\r\n\"skill\": \"programming\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/v1/auth/logout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
