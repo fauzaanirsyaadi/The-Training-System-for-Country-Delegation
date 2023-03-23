@@ -98,6 +98,53 @@ router.get('/v1/auth/logout', (req, res) => {
   res.status(200).json({ message: 'Logout success' });
 });
 
+// GET all user
+router.get('/v1/user', (req, res) => {
+  const token = req.query.token;
+
+  if (token !== userToken) {
+    return res.status(401).json({ message: 'Unauthorized user' });
+  }
+  User.find()
+    .then(users => res.status(200).json(users))
+    .catch(err => res.status(422).json({ message: 'Data cannot be processed' }));
+});
+
+// GET user by profile
+router.get('/v1/user/:profile', (req, res) => {
+  const token = req.query.token;
+  const profile = req.params.profile;
+
+  if (token !== userToken) {
+    return res.status(401).json({ message: 'Unauthorized user' });
+  }
+
+  User.find()
+    .then(users => {
+      const filteredUsers = users.filter(user => user.profile === profile);
+      res.status(200).json(filteredUsers);
+    })
+    .catch(err => res.status(422).json({ message: 'Data cannot be processed' }));
+});
+
+// GET user by skill
+router.get('/v1/user/skill/:skill', (req, res) => {
+  const token = req.query.token;
+  const skill = req.params.skill;
+
+  if (token !== userToken) {
+    return res.status(401).json({ message: 'Unauthorized user' });
+  }
+
+  User.find()
+    .then(users => {
+      const filteredUsers = users.filter(user => user.skill === skill);
+      res.status(200).json(filteredUsers);
+    })
+    .catch(err => res.status(422).json({ message: 'Data cannot be processed' }));
+});
+
+
 // POST request to register a training activity
 router.post('/v1/activity', function(req, res) {
   const token = req.query.token;
@@ -107,14 +154,14 @@ router.post('/v1/activity', function(req, res) {
   }
 
   // Verify that the user has the correct profile to create an activity (expert)
-  if (userProfile !== 'expert') {
-    return res.status(401).json({ message: 'Unauthorized user : not expert user' });
-  }
+  // if (userProfile !== 'expert') {
+  //   return res.status(401).json({ message: 'Unauthorized user : not expert user' });
+  // }
 
   // Validate request body
   const { skill, title, description, startdate, enddate, participants } = req.body;
-  if (!skill || !title || !description || !startdate || !enddate || !participants) {
-    return res.status(422).json({ message: 'Data cannot be processed' });
+  if (!participants) {
+    return res.status(422).json({ message: 'Data cannot be processed ' });
   }
 
   // Validate that start date is before end date
@@ -122,25 +169,30 @@ router.post('/v1/activity', function(req, res) {
     return res.status(422).json({ message: 'Start date cannot be after end date' });
   }
 
-  // Validate that participants have the same skill
-  const participantSkills = participants.map(participant => participant.skill);
-  const validParticipants = participantSkills.every(participantSkill => participantSkill === skill);
-  if (!validParticipants) {
-    return res.status(422).json({ message: 'All participants must have the same skill as the activity' });
-  }
+  // check user skill of id of participants
+  // participants.forEach(participant => {
+  //   User.find()
+  //   .then(users => {
+  //     const filteredUsers = users.filter(user => user._id === participant.id);
+  //     if (filteredUsers[0].skill !== skill) {
+  //       return res.status(422).json({ message: 'participant must have same skill' });
+  //     }
+  //   })
+  // });
 
   // Create the activity
-  const activity = {
-    id: uuidv4(),
-    skill,
+  const skillactivity = skill
+  const activity =  new Activity ({
+    skillactivity,
     title,
     description,
     startdate,
     enddate,
     participants
-  };
-  db.activities.push(activity);
-  return res.status(200).json({ message: 'create success' });
+  });
+  activity.save()
+    .then(activity => res.status(201).json({message : 'create success'}))
+    .catch(err => res.status(422).json({ message: 'Data cannot be processed' }));
 });
 
 // PUT request to update a training activity
@@ -281,13 +333,14 @@ router.get('/v1/activities/:skill_id', async (req, res) => {
 // List skills endpoint
 router.get('/v1/skills', async (req, res) => {
   try {
-    // Check if user is logged in
-    if (!req.user) {
-      return res.status(401).json({ message: "Unauthorized user" });
+    // token
+    const token = req.query.token;
+    if (token !== userToken) {
+      return res.status(401).json({ message: 'Unauthorized user' });
     }
 
     // Find all skills
-    const skills = await Skill.find({});
+    const skills = await skills.find({});
 
     // Get activities for each skill
     const skillsWithActivities = await Promise.all(skills.map(async skill => {
@@ -306,5 +359,7 @@ router.get('/v1/skills', async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 });
+
+
 
 module.exports = router;

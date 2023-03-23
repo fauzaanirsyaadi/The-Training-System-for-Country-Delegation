@@ -1,0 +1,189 @@
+[{
+  "_id": {
+    "$oid": "641c8e21a7da22b14f2c1de4"
+  }
+},{
+  "_id": {
+    "$oid": "641c8f13a7da22b14f2c1dee"
+  },
+  "skill": "admin",
+  "title": "Java training",
+  "description": "Java training",
+  "startdate": "2020-10-10T00:00:00.000Z",
+  "enddate": "2020-10-10T00:00:00.000Z",
+  "participants": [
+    "641c097c2f487e9f8956477d",
+    "641c09448e3aef1b6e772096"
+  ]
+},{
+  "_id": {
+    "$oid": "641c8f98ff4b063b67014329"
+  },
+  "participants": [
+    {
+      "$oid": "641c097c2f487e9f8956477d"
+    },
+    {
+      "$oid": "641c09448e3aef1b6e772096"
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "641c906e2b5270cb6a857916"
+  },
+  "title": "Java training",
+  "participants": [
+    {
+      "$oid": "641c097c2f487e9f8956477d"
+    },
+    {
+      "$oid": "641c09448e3aef1b6e772096"
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "641c90b81eae190d42a61fbe"
+  },
+  "title": "Java training",
+  "participants": [
+    {
+      "$oid": "641c097c2f487e9f8956477d"
+    },
+    {
+      "$oid": "641c09448e3aef1b6e772096"
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "641c90bd1eae190d42a61fc0"
+  },
+  "title": "Java training",
+  "participants": [
+    {
+      "$oid": "641c097c2f487e9f8956477d"
+    },
+    {
+      "$oid": "641c09448e3aef1b6e772096"
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "641c91510e3508de764b9b30"
+  },
+  "title": "Java training",
+  "description": "admin in the morning",
+  "participants": [
+    {
+      "$oid": "641c097c2f487e9f8956477d"
+    },
+    {
+      "$oid": "641c09448e3aef1b6e772096"
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "641c928c2615ef7f83cfcda8"
+  },
+  "title": "Java training",
+  "description": "admin in the morning",
+  "participants": [
+    {
+      "$oid": "641c097c2f487e9f8956477d"
+    },
+    {
+      "$oid": "641c09448e3aef1b6e772096"
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "641c99678903def637746cea"
+  },
+  "skillactivity": "surf",
+  "title": "Java training",
+  "description": "admin in the morning",
+  "participants": [
+    {
+      "$oid": "641c097c2f487e9f8956477d"
+    },
+    {
+      "$oid": "641c09448e3aef1b6e772096"
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "641c9a6f526b8ebfa14fed23"
+  },
+  "skillactivity": "surf",
+  "title": "Java training",
+  "description": "admin in the morning",
+  "participants": [
+    {
+      "$oid": "641c097c2f487e9f8956477d"
+    },
+    {
+      "$oid": "641c09448e3aef1b6e772096"
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "641c9d13364b39b61f8bc5d9"
+  },
+  "skillactivity": "admin",
+  "title": "Java training",
+  "description": "admin in the morning",
+  "participants": [
+    {
+      "$oid": "641c097c2f487e9f8956477d"
+    },
+    {
+      "$oid": "641c09448e3aef1b6e772096"
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "641cb96c854d970050f9a40b"
+  },
+  "skillactivity": "admin",
+  "title": "Java training",
+  "description": "admin in the morning",
+  "participants": [
+    {
+      "$oid": "641c097c2f487e9f8956477d"
+    },
+    {
+      "$oid": "641c09448e3aef1b6e772096"
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "641cba8162bfa6717b5a3106"
+  },
+  "skillactivity": "admin",
+  "title": "Java training",
+  "description": "admin in the morning",
+  "startdate": {
+    "$date": "2020-10-10T00:00:00.000Z"
+  },
+  "enddate": {
+    "$date": "2021-10-10T00:00:00.000Z"
+  },
+  "participants": [
+    {
+      "$oid": "641c097c2f487e9f8956477d"
+    },
+    {
+      "$oid": "641c09448e3aef1b6e772096"
+    }
+  ],
+  "__v": 0
+}]

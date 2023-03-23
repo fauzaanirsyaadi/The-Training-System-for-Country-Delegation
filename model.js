@@ -13,10 +13,10 @@ const userSchema = new mongoose.Schema(
 );
 
 const activitySchema = new mongoose.Schema({
-  skill: {
+  skillactivity: {
     type: String,
     required: true
-  },
+  }, 
   title: {
     type: String,
     required: true
@@ -25,11 +25,11 @@ const activitySchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  start_date: {
+  startdate: {
     type: Date,
     required: true
   },
-  end_date: {
+  enddate: {
     type: Date,
     required: true
   },
@@ -47,6 +47,20 @@ const activitySchema = new mongoose.Schema({
   },
   
 });
+
+// example request api participants
+// {
+//   "skillactivity": "surf",
+//   "title": "Surfing in the morning",
+//   "description": "Surfing in the morning",
+//   "start_date": 20230323,
+//   "end_date": 20230324,
+//   "participants": [
+//     "5f7f9b0b0b1b1b1b1b1b1b1b",
+//     "5f7f9b0b0b1b1b1b1b1b1b1b"
+//   ]
+// }
+
 
 // Export Models
 module.exports.User = mongoose.model('User', userSchema);

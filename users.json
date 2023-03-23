@@ -1,0 +1,111 @@
+[{
+  "_id": {
+    "$oid": "641bfcca3e8de01a0b76646d"
+  },
+  "name": "John Doe",
+  "email": "johndoe@example.com",
+  "username": "johndoe",
+  "password": "password123",
+  "profile": "competitor",
+  "skill": "programming",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "641bfd813e8de01a0b766475"
+  },
+  "name": "John Doe 2",
+  "email": "johndoe2@example.com",
+  "username": "johndoe2",
+  "password": "password123",
+  "profile": "board",
+  "skill": "programming",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "641bffb40ccdcb6dbb6f9b49"
+  },
+  "name": "admin",
+  "email": "admin@email.com",
+  "username": "admin",
+  "password": "admin",
+  "profile": "board",
+  "skill": "admin",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "641c09448e3aef1b6e772096"
+  },
+  "name": "admin 2",
+  "email": "admin2@email.com",
+  "username": "admin2",
+  "password": "admin",
+  "profile": "board",
+  "skill": "admin",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "641c097c2f487e9f8956477d"
+  },
+  "name": "admin 2",
+  "email": "admin2@email.com",
+  "username": "admin1",
+  "password": "admin",
+  "profile": "board",
+  "skill": "admin",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "641c0b88ae089ccf97f650b8"
+  },
+  "name": "admin 3",
+  "email": "admin3@email.com",
+  "username": "admin3",
+  "password": "admin3",
+  "profile": "board",
+  "skill": "admin1",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "641c104ffae936393f45fb76"
+  },
+  "name": "admin 3",
+  "email": "admin3@email.com",
+  "username": "fauzaan",
+  "password": "admin3",
+  "profile": "board",
+  "skill": "admin1",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "641c17d8f57a4224a68bd74f"
+  },
+  "name": "fauzaan",
+  "email": "fauzaan@email.com",
+  "username": "fauzaan1",
+  "password": "fauzaan",
+  "profile": "board",
+  "skill": "admin1",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "641c17e1f57a4224a68bd751"
+  },
+  "name": "fauzaan",
+  "email": "fauzaan@email.com",
+  "username": "fauzaan2",
+  "password": "fauzaan",
+  "profile": "board",
+  "skill": "admin1",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "641c72f4eddbbc6ecf2cb85a"
+  },
+  "name": "expert",
+  "email": "expert@email.com",
+  "username": "expert",
+  "password": "expert",
+  "profile": "expert",
+  "skill": "expert",
+  "__v": 0
+}]
