@@ -8,15 +8,10 @@ const userSchema = new mongoose.Schema(
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     profile: { type: String, enum: ['board', 'expert', 'trainer', 'competitor'], required: true },
-    skill: { type: String }
   }  
 );
 
 const activitySchema = new mongoose.Schema({
-  skillactivity: {
-    type: String,
-    required: true
-  }, 
   title: {
     type: String,
     required: true
@@ -48,20 +43,26 @@ const activitySchema = new mongoose.Schema({
   
 });
 
-// example request api participants
-// {
-//   "skillactivity": "surf",
-//   "title": "Surfing in the morning",
-//   "description": "Surfing in the morning",
-//   "start_date": 20230323,
-//   "end_date": 20230324,
-//   "participants": [
-//     "5f7f9b0b0b1b1b1b1b1b1b1b",
-//     "5f7f9b0b0b1b1b1b1b1b1b1b"
-//   ]
-// }
+// skill model 
+const skillSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  // activities (list of Activity ids, optional)
+  activities: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: 'Activity'
+  },
+  // users (list of User ids, optional)
+  users: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: 'User'
+  }
+});
 
 
 // Export Models
 module.exports.User = mongoose.model('User', userSchema);
 module.exports.Activity = mongoose.model('Activity', activitySchema);
+module.exports.Skill = mongoose.model('Skill', skillSchema);

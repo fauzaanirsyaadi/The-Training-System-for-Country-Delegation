@@ -7,14 +7,14 @@
 	},
 	"item": [
 		{
-			"name": "register",
+			"name": "register user",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MWJmZDgxM2U4ZGUwMWEwYjc2NjQ3NSIsInByb2ZpbGUiOiJib2FyZCIsImlhdCI6MTY3OTU4NjAwMSwiZXhwIjoxNjc5NTg5NjAxfQ.FLeBa39zKxPAtXzRq_cdquxCMBjJFENhNRFAo-hpEY0",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MWJmZmI0MGNjZGNiNmRiYjZmOWI0OSIsInByb2ZpbGUiOiJib2FyZCIsImlhdCI6MTY3OTYyNTUzNywiZXhwIjoxNjc5NjI5MTM3fQ.UbF2Yx65wUUXyd_7tlsuJM6aHUM3pJD4CPRdvNws_-w",
 							"type": "string"
 						}
 					]
@@ -23,7 +23,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"name\": \"expert\",\r\n\"email\": \"expert@email.com\",\r\n\"username\": \"expert\",\r\n\"password\": \"expert\",\r\n\"profile\": \"expert\",\r\n\"skill\": \"expert\"\r\n}",
+					"raw": "{\r\n\"name\": \"expert\",\r\n\"email\": \"expert@email.com\",\r\n\"username\": \"expert 4\",\r\n\"password\": \"expert\",\r\n\"profile\": \"expert\",\r\n\"skill\": \"expert\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -58,7 +58,7 @@
 						},
 						{
 							"key": "username",
-							"value": "expert",
+							"value": "expert 1",
 							"type": "string"
 						}
 					]
@@ -67,7 +67,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"name\": \"John Doe 2\",\r\n\"email\": \"johndoe2@example.com\",\r\n\"username\": \"johndoe2\",\r\n\"password\": \"password123\",\r\n\"profile\": \"board\",\r\n\"skill\": \"programming\"\r\n}",
+					"raw": "{\r\n\"username\": \"expert\",\r\n\"password\": \"expert\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -85,45 +85,6 @@
 						"v1",
 						"auth",
 						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "register a training activity",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MWJmZDgxM2U4ZGUwMWEwYjc2NjQ3NSIsInByb2ZpbGUiOiJib2FyZCIsImlhdCI6MTY3OTU5MzcxOCwiZXhwIjoxNjc5NTk3MzE4fQ.XirZ5ttKfIUHFV1uWVrB11Hxvb6a2nQpqLYhG9NP3Ek",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"skill\": \"admin\",\r\n    \"title\":\"Java training\",\r\n    \"description\": \"admin in the morning\",\r\n    \"startdate\": \"2020-10-10\",\r\n    \"enddate\": \"2021-10-10\",\r\n    \"participants\": [\r\n        \"641c097c2f487e9f8956477d\",\r\n        \"641c09448e3aef1b6e772096\"\r\n    ]\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/v1/activity",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"v1",
-						"activity"
 					]
 				}
 			},
@@ -173,26 +134,23 @@
 			"response": []
 		},
 		{
-			"name": "get all user",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
+			"name": "register a training activity",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MWJmZDgxM2U4ZGUwMWEwYjc2NjQ3NSIsInByb2ZpbGUiOiJib2FyZCIsImlhdCI6MTY3OTU3NTUxNSwiZXhwIjoxNjc5NTc5MTE1fQ.xHL520Z8SySq17lh6KyHkO5cGRT4Wo0LYsWNkMnsSIc",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MWM3MmY0ZWRkYmJjNmVjZjJjYjg1YSIsInByb2ZpbGUiOiJleHBlcnQiLCJpYXQiOjE2Nzk2MjY0NjUsImV4cCI6MTY3OTYzMDA2NX0.Lk6exMvyrJwor0haxnTGMi4JUimwaMFpR1XBoRoVOKs",
 							"type": "string"
 						}
 					]
 				},
-				"method": "GET",
+				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"name\": \"John Doe 2\",\r\n\"email\": \"johndoe2@example.com\",\r\n\"username\": \"johndoe2\",\r\n\"password\": \"password123\",\r\n\"profile\": \"board\",\r\n\"skill\": \"programming\"\r\n}",
+					"raw": "{\r\n    \"skill\": \"admin\",\r\n    \"title\":\"Java training\",\r\n    \"description\": \"admin in the morning\",\r\n    \"startdate\": \"2020-10-10\",\r\n    \"enddate\": \"2021-10-10\",\r\n    \"participants\": [\r\n        \"641c097c2f487e9f8956477d\",\r\n        \"641c09448e3aef1b6e772096\"\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -200,7 +158,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/v1/user",
+					"raw": "http://localhost:3000/v1/activity",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -208,33 +166,30 @@
 					"port": "3000",
 					"path": [
 						"v1",
-						"user"
+						"activity"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "get user by profile",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
+			"name": "update a training activity",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MWJmZDgxM2U4ZGUwMWEwYjc2NjQ3NSIsInByb2ZpbGUiOiJib2FyZCIsImlhdCI6MTY3OTU3NTUxNSwiZXhwIjoxNjc5NTc5MTE1fQ.xHL520Z8SySq17lh6KyHkO5cGRT4Wo0LYsWNkMnsSIc",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MWM3MmY0ZWRkYmJjNmVjZjJjYjg1YSIsInByb2ZpbGUiOiJleHBlcnQiLCJpYXQiOjE2Nzk2MjM0MTIsImV4cCI6MTY3OTYyNzAxMn0.ZBktUtvH6purK4mrB3TY51Z07x88AhGbR4B9owUba54",
 							"type": "string"
 						}
 					]
 				},
-				"method": "GET",
+				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"name\": \"John Doe 2\",\r\n\"email\": \"johndoe2@example.com\",\r\n\"username\": \"johndoe2\",\r\n\"password\": \"password123\",\r\n\"profile\": \"board\",\r\n\"skill\": \"programming\"\r\n}",
+					"raw": "{\r\n    \"skill\": \"admin 1\",\r\n    \"title\":\"Java training\",\r\n    \"description\": \"admin in the morning\",\r\n    \"startdate\": \"2020-10-10\",\r\n    \"enddate\": \"2021-10-10\",\r\n    \"participants\": [\r\n        \"641c097c2f487e9f8956477d\",\r\n        \"641c09448e3aef1b6e772096\"\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -242,7 +197,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/v1/user/board",
+					"raw": "http://localhost:3000/v1/activity/641cba8162bfa6717b5a3106",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -250,34 +205,31 @@
 					"port": "3000",
 					"path": [
 						"v1",
-						"user",
-						"board"
+						"activity",
+						"641cba8162bfa6717b5a3106"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "get user by skill",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
+			"name": "delete a training activity",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MWJmZDgxM2U4ZGUwMWEwYjc2NjQ3NSIsInByb2ZpbGUiOiJib2FyZCIsImlhdCI6MTY3OTU3NTUxNSwiZXhwIjoxNjc5NTc5MTE1fQ.xHL520Z8SySq17lh6KyHkO5cGRT4Wo0LYsWNkMnsSIc",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MWJmZDgxM2U4ZGUwMWEwYjc2NjQ3NSIsInByb2ZpbGUiOiJib2FyZCIsImlhdCI6MTY3OTU5MzcxOCwiZXhwIjoxNjc5NTk3MzE4fQ.XirZ5ttKfIUHFV1uWVrB11Hxvb6a2nQpqLYhG9NP3Ek",
 							"type": "string"
 						}
 					]
 				},
-				"method": "GET",
+				"method": "DELETE",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"name\": \"John Doe 2\",\r\n\"email\": \"johndoe2@example.com\",\r\n\"username\": \"johndoe2\",\r\n\"password\": \"password123\",\r\n\"profile\": \"board\",\r\n\"skill\": \"programming\"\r\n}",
+					"raw": "{\r\n    \"skill\": \"admin\",\r\n    \"title\":\"Java training\",\r\n    \"description\": \"admin in the morning\",\r\n    \"startdate\": \"2020-10-10\",\r\n    \"enddate\": \"2021-10-10\",\r\n    \"participants\": [\r\n        \"641c097c2f487e9f8956477d\",\r\n        \"641c09448e3aef1b6e772096\"\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -285,7 +237,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/v1/user/skill/admin",
+					"raw": "http://localhost:3000/v1/activity/641c8f98ff4b063b67014329",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -293,16 +245,15 @@
 					"port": "3000",
 					"path": [
 						"v1",
-						"user",
-						"skill",
-						"admin"
+						"activity",
+						"641c8f98ff4b063b67014329"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "logout Copy",
+			"name": "get all skill",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -321,7 +272,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"name\": \"John Doe 2\",\r\n\"email\": \"johndoe2@example.com\",\r\n\"username\": \"johndoe2\",\r\n\"password\": \"password123\",\r\n\"profile\": \"board\",\r\n\"skill\": \"programming\"\r\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -344,7 +295,7 @@
 			"response": []
 		},
 		{
-			"name": "List of Activities",
+			"name": "list of activity",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -354,7 +305,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MWJmZDgxM2U4ZGUwMWEwYjc2NjQ3NSIsInByb2ZpbGUiOiJib2FyZCIsImlhdCI6MTY3OTU3NTUxNSwiZXhwIjoxNjc5NTc5MTE1fQ.xHL520Z8SySq17lh6KyHkO5cGRT4Wo0LYsWNkMnsSIc",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MWJmZDgxM2U4ZGUwMWEwYjc2NjQ3NSIsInByb2ZpbGUiOiJib2FyZCIsImlhdCI6MTY3OTU5MTQyMCwiZXhwIjoxNjc5NTk1MDIwfQ.IlxT5TeAJZeXEL8YDy9vk5lfjCmRiHXSnsa1iCyO43g",
 							"type": "string"
 						}
 					]
@@ -363,7 +314,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"name\": \"John Doe 2\",\r\n\"email\": \"johndoe2@example.com\",\r\n\"username\": \"johndoe2\",\r\n\"password\": \"password123\",\r\n\"profile\": \"board\",\r\n\"skill\": \"programming\"\r\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -371,7 +322,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/v1/activities/1",
+					"raw": "http://localhost:3000/v1/activities/641d148308b55067ee688454",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -380,7 +331,7 @@
 					"path": [
 						"v1",
 						"activities",
-						"1"
+						"641d148308b55067ee688454"
 					]
 				}
 			},

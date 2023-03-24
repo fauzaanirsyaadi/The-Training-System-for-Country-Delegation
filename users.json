@@ -108,4 +108,35 @@
   "profile": "expert",
   "skill": "expert",
   "__v": 0
+},{
+  "_id": {
+    "$oid": "641cfffe333b1c53ee2bd415"
+  },
+  "name": "expert",
+  "email": "expert@email.com",
+  "username": "expert 1",
+  "password": "expert",
+  "profile": "expert",
+  "skill": "expert",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "641d098bfaddd7c39f2bbb82"
+  },
+  "name": "expert",
+  "email": "expert@email.com",
+  "username": "expert 3",
+  "password": "expert",
+  "profile": "expert",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "641d0d5a51884361151a73cd"
+  },
+  "name": "expert",
+  "email": "expert@email.com",
+  "username": "expert 4",
+  "password": "expert",
+  "profile": "expert",
+  "__v": 0
 }]

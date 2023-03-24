@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const { User, Activity } = require('./model');
+const { User, Activity, Skill } = require('./model');
 
 let userToken ;
 let userProfile ;
@@ -38,8 +38,12 @@ router.post('/v1/user', (req, res) => {
     username,
     password,
     profile,
-    skill,
   });
+  const newSkill = new Skill({
+    name: skill,
+    users: newUser._id,
+  });
+  newSkill.save();
   newUser.save()
     .then(savedUser => res.status(200).json({ message: 'create success' }))
     .catch(err => res.status(422).json({ message: 'Data cannot be processed' }));
@@ -56,7 +60,7 @@ router.post('/v1/auth/login', async (req, res) => {
 
   try {
     // Find user by username
-    const user = await User.findOne({ username });
+    const user = await User.findOne({ username }).exec();
 
     // Check if user exists
     if (!user) {
@@ -78,8 +82,6 @@ router.post('/v1/auth/login', async (req, res) => {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });
   }
-  console.log(this.userToken);
-  console.log(userProfile);
 });
 
 // Logout endpoint
@@ -98,59 +100,17 @@ router.get('/v1/auth/logout', (req, res) => {
   res.status(200).json({ message: 'Logout success' });
 });
 
-// GET all user
-router.get('/v1/user', (req, res) => {
-  const token = req.query.token;
-
-  if (token !== userToken) {
-    return res.status(401).json({ message: 'Unauthorized user' });
-  }
-  User.find()
-    .then(users => res.status(200).json(users))
-    .catch(err => res.status(422).json({ message: 'Data cannot be processed' }));
-});
-
-// GET user by profile
-router.get('/v1/user/:profile', (req, res) => {
-  const token = req.query.token;
-  const profile = req.params.profile;
-
-  if (token !== userToken) {
-    return res.status(401).json({ message: 'Unauthorized user' });
-  }
-
-  User.find()
-    .then(users => {
-      const filteredUsers = users.filter(user => user.profile === profile);
-      res.status(200).json(filteredUsers);
-    })
-    .catch(err => res.status(422).json({ message: 'Data cannot be processed' }));
-});
-
-// GET user by skill
-router.get('/v1/user/skill/:skill', (req, res) => {
-  const token = req.query.token;
-  const skill = req.params.skill;
-
-  if (token !== userToken) {
-    return res.status(401).json({ message: 'Unauthorized user' });
-  }
-
-  User.find()
-    .then(users => {
-      const filteredUsers = users.filter(user => user.skill === skill);
-      res.status(200).json(filteredUsers);
-    })
-    .catch(err => res.status(422).json({ message: 'Data cannot be processed' }));
-});
-
-
 // POST request to register a training activity
 router.post('/v1/activity', function(req, res) {
   const token = req.query.token;
   
   if (token !== userToken) {
     return res.status(401).json({ message: 'Unauthorized user' });
+  }
+
+  // only expert can create activity
+  if (userProfile !== 'expert') {
+    return res.status(401).json({ message: 'Unauthorized user : not expert user' });
   }
 
   // Verify that the user has the correct profile to create an activity (expert)
@@ -169,33 +129,38 @@ router.post('/v1/activity', function(req, res) {
     return res.status(422).json({ message: 'Start date cannot be after end date' });
   }
 
-  // check user skill of id of participants
-  // participants.forEach(participant => {
-  //   User.find()
-  //   .then(users => {
-  //     const filteredUsers = users.filter(user => user._id === participant.id);
-  //     if (filteredUsers[0].skill !== skill) {
-  //       return res.status(422).json({ message: 'participant must have same skill' });
-  //     }
-  //   })
-  // });
+  const userSkills = [];
+  // loop participants
+  for (let i = 0; i < participants.length; i++) {
+    // find skill of each participant
+    const userSkill = Skill.find({ users: participants[i] });
+    userSkills.push(userSkill);
+  }
+  // check if skill of each participant is the same as the skill of the activity
+  if (userSkills.includes(skill)) {
+    return res.status(422).json({ message: 'Skill of each participant is not the same as the skill of the activity' });
+  }
 
-  // Create the activity
-  const skillactivity = skill
+  const user_id = participants
   const activity =  new Activity ({
-    skillactivity,
     title,
     description,
     startdate,
     enddate,
     participants
   });
+  const newSkill = new Skill({
+    name: skill,
+    users: user_id,
+    activities: activity._id
+  });
+  newSkill.save();
   activity.save()
-    .then(activity => res.status(201).json({message : 'create success'}))
-    .catch(err => res.status(422).json({ message: 'Data cannot be processed' }));
+  .then(activity => res.status(201).json({message : 'create success'}))
+  .catch(err => res.status(422).json({ message: 'Data cannot be processed' }));
 });
 
-// PUT request to update a training activity
+// PUT request to update a activity
 router.put('/v1/activity/:id', async function(req, res) {
   // Verify that the user has a valid token
   const token = req.query.token;
@@ -210,7 +175,7 @@ router.put('/v1/activity/:id', async function(req, res) {
 
   // Find the activity by ID
   const id = req.params.id;
-  const activity = db.activities.find(activity => activity.id === id);
+  const activity = await Activity.findById(id);
   if (!activity) {
     return res.status(422).json({ message: 'Data cannot be processed' });
   }
@@ -227,55 +192,28 @@ router.put('/v1/activity/:id', async function(req, res) {
     return res.status(422).json({ message: 'Start date must be before end date' });
   }
 
-  // Check if participants have the same skill as the activity
-  const participantsSkills = await Promise.all(participants.map(async (participantId) => {
-    const user = await User.findById(participantId);
-    return user.skill;
-  }));
-  if (!participantsSkills.every((pSkill) => pSkill === skill)) {
-    return res.status(422).json({ message: 'Participants must have the same skill as the activity' });
+  const userSkills = [];
+  // loop participants
+  for (let i = 0; i < participants.length; i++) {
+    // find skill of each participant
+    const userSkill = Skill.find({ users: participants[i] });
+    userSkills.push(userSkill);
   }
-
+  // check if skill of each participant is the same as the skill of the activity
+  if (userSkills.includes(skill)) {
+    return res.status(422).json({ message: 'Skill of each participant is not the same as the skill of the activity' });
+  }
+  const user_id = participants
   try {
-    const activity = new Activity({ skill, title, description, startdate, enddate, participants });
+    const newSkill = new Skill({
+      name: skill,
+      users: user_id,
+      activities: activity._id
+    });
+    newSkill.save();
+    const activity = new Activity({ title, description, startdate, enddate, participants });
     const savedActivity = await activity.save();
-    res.json({ message: 'Create success', data: savedActivity });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server error' });
-  }
-});
-
-// Update an Activity
-router.put('/:id', async (req, res) => {
-  const { skill, title, description, startdate, enddate, participants } = req.body;
-
-  // Check if required fields are not empty
-  if (!skill || !title || !description || !startdate || !enddate || !participants) {
-    return res.status(422).json({ message: 'Data cannot be processed' });
-  }
-
-  // Check if start date is before end date
-  if (new Date(startdate) >= new Date(enddate)) {
-    return res.status(422).json({ message: 'Start date must be before end date' });
-  }
-
-  // Check if participants have the same skill as the activity
-  const participantsSkills = await Promise.all(participants.map(async (participantId) => {
-    const user = await User.findById(participantId);
-    return user.skill;
-  }));
-  if (!participantsSkills.every((pSkill) => pSkill === skill)) {
-    return res.status(422).json({ message: 'Participants must have the same skill as the activity' });
-  }
-
-  try {
-    const updatedActivity = await Activity.findByIdAndUpdate(
-      req.params.id,
-      { skill, title, description, startdate, enddate, participants },
-      { new: true }
-    );
-    res.json({ message: 'Update success', data: updatedActivity });
+    res.json({ message: 'update success', data: savedActivity });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server error' });
@@ -283,8 +221,19 @@ router.put('/:id', async (req, res) => {
 });
 
 // Delete an Activity
-router.delete('/:id', async (req, res) => {
+router.delete('/v1/activity/:id', async (req, res) => {
+  const token = req.query.token;
+  
+  if (token !== userToken) {
+    return res.status(401).json({ message: 'Unauthorized user' });
+  }
+
+  if (userProfile !== 'expert') {
+    return res.status(401).json({ message: 'Unauthorized user : not expert user' });
+  }
+
   try {
+    await Skill.findOneAndDelete(req.params.id);
     await Activity.findByIdAndDelete(req.params.id);
     res.json({ message: 'Delete success' });
   } catch (err) {
@@ -293,73 +242,54 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-// List of Activities
-router.get('/v1/activities/:skill_id', async (req, res) => {
+// List of Activities 
+router.get('/v1/activities/:id', async (req, res) => {
+  const token = req.query.token;
+  
+  if (token !== userToken) {
+    return res.status(401).json({ message: 'Unauthorized user' });
+  }
+  
   try {
-    const { skill_id } = req.params;
-    const { page, limit, sort_by, order_by } = req.query;
-    const offset = (page - 1) * limit;
-
-    // Get activities from the database
-    const activities = await Activity.findAndPaginate(
-      { skill_id },
-      { offset, limit, sort_by, order_by }
-    );
-
-    // Map participants to each activity
-    const activitiesWithParticipants = await Promise.all(
-      activities.map(async (activity) => {
-        const participants = await User.find({ _id: { $in: activity.participants } });
-
-        return {
-          ...activity._doc,
-          participants: participants.map(({ _id, name, profile, skills }) => ({
-            id: _id,
-            name,
-            profile,
-            skill: skills.find((skill) => skill._id.toString() === activity.skill_id.toString())
-          }))
-        };
-      })
-    );
-
-    res.status(200).json(activitiesWithParticipants);
+    // res.json(activitiesData);
+    const skill = await Skill.findById(req.params.id);
+    
+    // get all activities data from skill activities
+    const activities = skill.activities;
+    const Data = [];
+    Data.push({"skill_id" : skill._id, "skill_name" : skill.name});
+    for (let i = 0; i < activities.length; i++) {
+      const activity = await Activity.findById(activities[i]);
+      Data.push(activity);
+    }
+    // get all user data from skill users
+    const users = skill.users;
+    for (let i = 0; i < users.length; i++) {
+      const user = await User.findById(users[i]);
+      Data.push(user);
+    }
+    res.status(200).json(Data);
   } catch (error) {
     console.error(error);
     res.status(422).json({ message: 'Data cannot be processed' });
   }
 });
 
-// List skills endpoint
+// Get all skills
 router.get('/v1/skills', async (req, res) => {
+  const token = req.query.token;
+  
+  if (token !== userToken) {
+    return res.status(401).json({ message: 'Unauthorized user' });
+  }
+
   try {
-    // token
-    const token = req.query.token;
-    if (token !== userToken) {
-      return res.status(401).json({ message: 'Unauthorized user' });
-    }
-
-    // Find all skills
-    const skills = await skills.find({});
-
-    // Get activities for each skill
-    const skillsWithActivities = await Promise.all(skills.map(async skill => {
-      const activities = await Activity.find({ skill: skill._id });
-      return {
-        id: skill._id,
-        skill_name: skill.skill_name,
-        activities: activities.map(activity => activity._id)
-      };
-    }));
-
-    // Return skills with activities as response
-    res.status(200).json(skillsWithActivities);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: "Internal server error" });
+    const skills = await Skill.find();
+    res.status(200).json(skills);
+  } catch (error) {
+    console.error(error);
+    res.status(422).json({ message: 'Data cannot be processed' });
   }
 });
-
-
 
 module.exports = router;

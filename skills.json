@@ -1,0 +1,98 @@
+[{
+  "_id": {
+    "$oid": "641d0d4f51884361151a73ca"
+  },
+  "name": "expert",
+  "activities": [],
+  "users": [
+    {
+      "$oid": "641d0d4f51884361151a73c9"
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "641d0d5a51884361151a73ce"
+  },
+  "name": "expert",
+  "activities": [],
+  "users": [
+    {
+      "$oid": "641d0d5a51884361151a73cd"
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "641d105dd667d686d41e3ae8"
+  },
+  "name": "admin",
+  "activities": [],
+  "users": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "641d1092d667d686d41e3aec"
+  },
+  "name": "admin",
+  "activities": [],
+  "users": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "641d1262a069c4e5ab220c3c"
+  },
+  "name": "admin",
+  "activities": [
+    {
+      "$oid": "641d1262a069c4e5ab220c3b"
+    }
+  ],
+  "users": [
+    {
+      "$oid": "641c097c2f487e9f8956477d"
+    },
+    {
+      "$oid": "641c09448e3aef1b6e772096"
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "641d12e904d856cd6ee05a57"
+  },
+  "name": "admin",
+  "activities": [
+    {
+      "$oid": "641d12e904d856cd6ee05a56"
+    }
+  ],
+  "users": [
+    {
+      "$oid": "641c097c2f487e9f8956477d"
+    },
+    {
+      "$oid": "641c09448e3aef1b6e772096"
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "641d148308b55067ee688454"
+  },
+  "name": "admin",
+  "activities": [
+    {
+      "$oid": "641d148308b55067ee688453"
+    }
+  ],
+  "users": [
+    {
+      "$oid": "641c097c2f487e9f8956477d"
+    },
+    {
+      "$oid": "641c09448e3aef1b6e772096"
+    }
+  ],
+  "__v": 0
+}]
